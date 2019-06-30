@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  app:
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ./notebook.Dockerfile
+    ports:
+      - 80:8888
+    volumes:
+      - ./.jupyter:/home/jovyan/.jupyter
+      - ./src:/home/jovyan/src
+      - ./notebooks:/home/jovyan/notebooks
+    networks: 
+      - intrinio_sync_default
+
+networks:
+  intrinio_sync_default:
+    external: true
