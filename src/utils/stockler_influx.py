@@ -24,11 +24,10 @@ def get_stockler_data_client() -> DataFrameClient:
     return stockler_data_client
 
 
-def select_from_stocks(query: str, symbol_regex='', epoch='1m', min_date: datetime = None, max_date: datetime = None)\
-        -> DataFrame:
+def select_from_stocks(query: str, symbol_regex='', epoch='1m', min_date: datetime = None, max_date: datetime = None):
     """ Builds a select query to cut the boilerplate"""
     client = get_stockler_data_client()
-    group_by = f"GROUP BY time({epoch})" if epoch else ''
+    group_by = f"GROUP BY time({epoch}), symbol" if epoch else ''
     date_filter = ''
     if max_date:
         timezone = 'Z'
@@ -41,12 +40,19 @@ def select_from_stocks(query: str, symbol_regex='', epoch='1m', min_date: dateti
            SELECT 
             {query} 
            FROM stockler.autogen.stocks 
-           WHERE "symbol" =~ {symbol_regex} {date_filter} {group_by} FILL(null)
+           WHERE "symbol" =~ {symbol_regex} {date_filter} {group_by} FILL(none)
         """.strip()
     query = re.sub("^\s*", '', query, flags=re.MULTILINE)
     print(query)
 
     result = client.query(query, epoch=epoch)
-    if len(result):
-        return result['stocks']
+    return __normalize_index_keys(result)
+
+
+def __normalize_index_keys(db_result: dict):
+    result = {}
+    if len(db_result):
+        for k in db_result.keys():
+            symbol = '_'.join(['__'.join(group) for group in k[1]])
+            result[symbol] = db_result[k]
     return result

@@ -8,9 +8,9 @@ services:
     ports:
       - 80:8888
     volumes:
-      - ./.jupyter:/home/jovyan/.jupyter
       - ./src:/home/jovyan/src
       - ./notebooks:/home/jovyan/notebooks
+      - ./data:/home/jovyan/data
     networks: 
       - intrinio_sync_default
 

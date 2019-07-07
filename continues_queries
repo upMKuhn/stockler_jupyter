@@ -1,0 +1,22 @@
+DROP CONTINUOUS QUERY "cq_ask_1m" ON "stockler";
+DROP CONTINUOUS QUERY "cq_bid_1m" ON "stockler";
+DROP CONTINUOUS QUERY "cq_stocks_1m" ON "stockler";
+
+CREATE CONTINUOUS QUERY "cq_stocks_1m" ON "stockler"
+BEGIN
+  SELECT mean("average_price") as "average_price", last("close") as "close", max("high") as "high", min("low") as "low", sum("num_trades") as "num_trades", first("open") as "open", sum("volume") as "volume"  INTO "stockler"."autogen"."stocks_1m" FROM "stockler"."autogen"."stocks" GROUP BY time(1m), "symbol", "exchange"
+END;
+  SELECT mean("average_price") as "average_price", last("close") as "close", max("high") as "high", min("low") as "low", sum("num_trades") as "num_trades", first("open") as "open", sum("volume") as "volume"  INTO "stockler"."autogen"."stocks_1m" FROM "stockler"."autogen"."stocks" GROUP BY time(1m), "symbol", "exchange";
+
+CREATE CONTINUOUS QUERY "cq_bid_1m" ON "stockler"
+BEGIN
+  SELECT last("close") as "close", max("high") as "high", min("low") as "low", first("open") as "open"  INTO "stockler"."autogen"."bid_1m" FROM "stockler"."autogen"."bid" GROUP BY time(1m), "symbol", "exchange"
+END;
+  SELECT last("close") as "close", max("high") as "high", min("low") as "low", first("open") as "open"  INTO "stockler"."autogen"."bid_1m" FROM "stockler"."autogen"."bid" GROUP BY time(1m), "symbol", "exchange";
+
+CREATE CONTINUOUS QUERY "cq_ask_1m" ON "stockler"
+BEGIN
+  SELECT last("close") as "close", max("high") as "high", min("low") as "low", first("open") as "open"  INTO "stockler"."autogen"."ask_1m" FROM "stockler"."autogen"."ask" GROUP BY time(1m), "symbol", "exchange"
+END;
+SELECT last("close") as "close", max("high") as "high", min("low") as "low", first("open") as "open"  INTO "stockler"."autogen"."ask_1m" FROM "stockler"."autogen"."ask" GROUP BY time(1m), "symbol", "exchange";
+

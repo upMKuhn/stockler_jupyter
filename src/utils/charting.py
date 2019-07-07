@@ -63,7 +63,7 @@ def get_figure_with_sub_chart(has_rangeselector=False, y_axis_range=None):
     return dict(data=[], layout=layout)
 
 
-def add_candle_chart(figure, open, low, high, close, x_data, y_axis='y', name='GS'):
+def add_candle_chart(figure, open, low, high, close, x_data, y_axis='y', name='symbol'):
     candle_sticks = dict(
         type='candlestick',
         open=open,
