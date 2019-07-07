@@ -1,5 +1,6 @@
 import sys
 from collections import defaultdict
+from datetime import datetime
 
 import numpy as np
 from pandas import DataFrame
@@ -7,6 +8,7 @@ from tensorflow.python.keras import Sequential
 from tensorflow.python.keras.layers import LSTM, Dense
 from tensorflow.python.keras.engine import training
 from typing import Dict, Tuple
+from tensorflow.python.keras.callbacks import TensorBoard
 
 
 class PriceAiTrainer:
@@ -17,8 +19,10 @@ class PriceAiTrainer:
             look_back=40,
             forward_prediction=40,
             test_size_percent=0.25,
-            validation_column='close'
+            validation_column='close',
+            log_dir='../logs/{}'
     ):
+        self.tf_board = TensorBoard(log_dir=log_dir.format(datetime.now().isoformat()))
         self.sample_size = look_back * 2
         self.validation_column = validation_column
         self.test_size_percent = test_size_percent
@@ -55,16 +59,18 @@ class PriceAiTrainer:
         model.compile(loss='mean_squared_error', optimizer='adam')
         history = model.fit(
             x_train, y_train, epochs=epochs, validation_data=(x_validate, y_validate), shuffle=True,
-            verbose=2
+            verbose=2, callbacks=[self.tf_board]
         )
+        model.save('../models/price_ai__{}'.format(datetime.now().isoformat()))
         return model, history
 
     def reshape_data(self, data: DataFrame):
 
         num_items = len(data)
+        # make the dataset evenly sized
         items_to_drop = int((num_items % self.look_back))
-        train_data = data.copy()[items_to_drop:]
-        validation_data = data[[self.validation_column]].copy()[items_to_drop:]
+        train_data = data.copy()[items_to_drop:][:-self.look_back]
+        validation_data = data[[self.validation_column]].copy().iloc[(items_to_drop + self.look_back):]
 
         print(items_to_drop)
 

@@ -12,6 +12,7 @@ services:
       - ./src:/home/jovyan/src
       - ./notebooks:/home/jovyan/notebooks
       - ./data:/home/jovyan/data
+      - ./logs:/home/jovyan/logs
     networks: 
       - intrinio_sync_default
 
