@@ -56,7 +56,7 @@ class PriceAiTrainer:
     def train(self, model: training.Model, symbol, epochs=220):
         x_train, y_train = self.train_data_by_symbol[symbol]
         x_validate, y_validate = self.validate_data_by_symbol[symbol]
-        model.compile(loss='mean_squared_error', optimizer='adam')
+        model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
         history = model.fit(
             x_train, y_train, epochs=epochs, validation_data=(x_validate, y_validate), shuffle=True,
             verbose=2, callbacks=[self.tf_board]

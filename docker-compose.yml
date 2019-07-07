@@ -13,6 +13,7 @@ services:
       - ./notebooks:/home/jovyan/notebooks
       - ./data:/home/jovyan/data
       - ./logs:/home/jovyan/logs
+      - ./models:/home/jovyan/models
     networks: 
       - intrinio_sync_default
 
