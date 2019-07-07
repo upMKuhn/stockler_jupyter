@@ -4,6 +4,7 @@ from datetime import datetime
 
 import numpy as np
 from pandas import DataFrame
+from sklearn.preprocessing import MinMaxScaler
 from tensorflow.python.keras import Sequential
 from tensorflow.python.keras.layers import LSTM, Dense
 from tensorflow.python.keras.engine import training
@@ -72,10 +73,13 @@ class PriceAiTrainer:
         train_data = data.copy()[items_to_drop:][:-self.look_back]
         validation_data = data[[self.validation_column]].copy().iloc[(items_to_drop + self.look_back):]
 
-        print(items_to_drop)
+        scaler = MinMaxScaler(copy=False)
 
-        x_data = np.array(np.split(train_data.to_numpy()[:, 1:], len(train_data) / 40))
-        y_data = np.array(np.split(validation_data.to_numpy().flatten(), len(validation_data) / 40))
+        scaled_train_data = scaler.fit_transform(train_data.to_numpy()[:, 1:])
+        scaled_validation_data = scaler.fit_transform(validation_data.to_numpy()).flatten()
+
+        x_data = np.array(np.split(scaled_train_data, len(train_data) / 40))
+        y_data = np.array(np.split(scaled_validation_data, len(validation_data) / 40))
 
         return x_data, y_data
 
