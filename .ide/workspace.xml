@@ -2,6 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15121654-2b6b-4f08-8c92-6a786b631339" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/continues_queries" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/symbol__TSLA_2018-08-02_2019-04-30.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/symbol__XBIO_2018-08-02_2019-04-30.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/stock-chart-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notebooks/stock-chart.ipynb" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/models/train_price_ai.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
@@ -54,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/models/train_price_ai.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+            <state relative-caret-position="210">
+              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -153,12 +160,6 @@
               <item name="price_ai" type="b2602c69:ProjectViewProjectNode" />
               <item name="price_ai" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="price_ai" type="b2602c69:ProjectViewProjectNode" />
-              <item name="price_ai" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -294,16 +295,15 @@
       <workItem from="1562011339150" duration="533000" />
       <workItem from="1562058222808" duration="28000" />
       <workItem from="1562415644617" duration="121000" />
-      <workItem from="1562427021795" duration="5781000" />
+      <workItem from="1562427021795" duration="6158000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53519000" />
+    <option name="totallyTimeSpent" value="53896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1938" y="14" width="1882" height="1037" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12568305" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -456,8 +456,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/models/train_price_ai.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+        <state relative-caret-position="210">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
