@@ -78,6 +78,8 @@ class PriceAiTrainer:
         scaled_train_data = scaler.fit_transform(train_data.to_numpy()[:, 1:])
         scaled_validation_data = scaler.fit_transform(validation_data.to_numpy()).flatten()
 
+        # x_data = scaled_train_data
+        # y_data = scaled_validation_data
         x_data = np.array(np.split(scaled_train_data, len(train_data) / 40))
         y_data = np.array(np.split(scaled_validation_data, len(validation_data) / 40))
 
