@@ -1,3 +1,5 @@
+import random
+
 import settings
 import numpy as np
 from pandas import DataFrame
@@ -121,3 +123,13 @@ def calculate_bollinger_bands(data_name, df: DataFrame, window_size=20, num_of_s
     df['lower'] = lower_band
     df['avg'] = rolling_mean
     return df.dropna()
+
+
+def make_random_colors(num_points, change_interval):
+    colors = []
+    for i in range(int(num_points / change_interval)):
+        r = random.randint(0, 255)
+        g = random.randint(0, 255)
+        b = random.randint(0, 255)
+        colors.append(f"rgba({r}, {g}, {b}, 1)")
+    return np.repeat(colors, repeats=int(num_points / change_interval))
